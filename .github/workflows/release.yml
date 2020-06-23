@@ -31,7 +31,7 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: dist/plugin.zip
-          asset_name: ${{ github.event.repository.name }}
+          asset_name: ${{ github.event.repository.name }}.zip
           tag: ${{ github.ref }}
           overwrite: true
 
