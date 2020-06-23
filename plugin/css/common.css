@@ -1,0 +1,18 @@
+.po-clip-target:hover {
+  cursor: copy;
+}
+
+.po-clip-target.copied {
+  cursor: inherit;
+  animation: copied 1s;
+}
+
+@keyframes copied {
+  0% {
+    background-color: rgba(0, 255, 0, 0.25);
+  }
+
+  100% {
+    background-color: inherit;
+  }
+}

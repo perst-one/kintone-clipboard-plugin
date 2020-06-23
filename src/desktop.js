@@ -1,21 +1,30 @@
+const ClipboardJS = require('clipboard');
+
 jQuery.noConflict();
 
 (function($, PLUGIN_ID) {
-  kintone.events.on('app.record.index.show', function() {
-    const config = kintone.plugin.app.getConfig(PLUGIN_ID);
+  const main = () => {
+    setTimeout(() => {
+      const className = 'po-clip-target';
+      const {selector} = kintone.plugin.app.getConfig(PLUGIN_ID);
 
-    const spaceElement = kintone.app.getHeaderSpaceElement();
-    const fragment = document.createDocumentFragment();
-    const headingEl = document.createElement('h3');
-    const messageEl = document.createElement('p');
+      for (const element of document.querySelectorAll(selector)) {
+        if (!element.classList.contains(className)) {
+          element.classList.add(className);
+          element.addEventListener('click', () => element.classList.add('copied'));
+          element.addEventListener('animationend', () => element.classList.remove('copied'));
 
-    messageEl.classList.add('plugin-space-message');
-    messageEl.textContent = config.message;
-    headingEl.classList.add('plugin-space-heading');
-    headingEl.textContent = 'Hello kintone plugin desktop!';
+          new ClipboardJS(element, {
+            text: (trigger) => trigger.innerText,
+          });
+        }
+      }
+    }, 0);
+  };
 
-    fragment.appendChild(headingEl);
-    fragment.appendChild(messageEl);
-    spaceElement.appendChild(fragment);
-  });
+  kintone.events.on('app.record.index.show', main);
+  kintone.events.on('app.record.index.edit.submit.success', main);
+  kintone.events.on('app.record.detail.show', main);
+  kintone.events.on('app.record.create.show', main);
+  kintone.events.on('app.record.edit.show', main);
 })(jQuery, kintone.$PLUGIN_ID);
