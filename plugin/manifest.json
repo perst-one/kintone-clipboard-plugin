@@ -3,10 +3,10 @@
   "version": 1,
   "type": "APP",
   "name": {
-    "en": "kintone-plugin-template"
+    "en": "kintone-clipboard-plugin"
   },
   "description": {
-    "en": "kintone-plugin-template"
+    "en": "kintone-clipboard-plugin"
   },
   "icon": "image/icon.png",
   "desktop": {

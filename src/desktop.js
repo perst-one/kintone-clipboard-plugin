@@ -1,3 +1,5 @@
+const ClipboardJS = require('clipboard');
+
 jQuery.noConflict();
 
 (function($, PLUGIN_ID) {
