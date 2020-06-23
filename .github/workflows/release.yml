@@ -13,8 +13,8 @@ env:
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
 jobs:
-  deploy:
-    name: Deploy
+  release:
+    name: Release
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
@@ -29,7 +29,7 @@ jobs:
 
       - uses: svenstaro/upload-release-action@v1-release
         with:
-          repo_token: ${{ env.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: dist/plugin.zip
           asset_name: ${{ github.event.repository.name }}
           tag: ${{ github.ref }}
