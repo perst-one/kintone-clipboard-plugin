@@ -11,16 +11,16 @@
   "icon": "image/icon.png",
   "desktop": {
     "js": ["https://js.cybozu.com/jquery/3.3.1/jquery.min.js", "js/desktop.js"],
-    "css": ["css/51-modern-default.min.css", "css/desktop.css"]
+    "css": ["css/51-modern-default.min.css", "css/common.css", "css/desktop.css"]
   },
   "mobile": {
     "js": ["https://js.cybozu.com/jquery/3.3.1/jquery.min.js", "js/mobile.js"],
-    "css": ["css/mobile.css"]
+    "css": ["css/common.css", "css/mobile.css"]
   },
   "config": {
     "html": "html/config.html",
     "js": ["https://js.cybozu.com/jquery/3.3.1/jquery.min.js", "js/config.js"],
-    "css": ["css/51-modern-default.min.css", "css/config.css"],
-    "required_params": ["message"]
+    "css": ["css/51-modern-default.min.css", "css/common.css", "css/config.css"],
+    "required_params": ["selector"]
   }
 }
