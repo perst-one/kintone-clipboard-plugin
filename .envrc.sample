@@ -1,0 +1,4 @@
+export KINTONE_DOMAIN=xxxxx.cybozu.com
+export KINTONE_USERNAME=
+export KINTONE_PASSWORD=
+export KINTONE_PRIVATE_PPK=

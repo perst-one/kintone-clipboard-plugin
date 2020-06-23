@@ -1,0 +1,36 @@
+on:
+  push:
+    branches:
+      - master
+
+name: Deploy
+
+env:
+  KINTONE_DOMAIN: ${{ secrets.KINTONE_DOMAIN }}
+  KINTONE_USERNAME: ${{ secrets.KINTONE_USERNAME }}
+  KINTONE_PASSWORD: ${{ secrets.KINTONE_PASSWORD }}
+  KINTONE_PRIVATE_PPK: ${{ secrets.KINTONE_PRIVATE_PPK }}
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+
+      - run: npm ci
+      - run: npm run generate:ppk
+      - run: npm run build
+      - run: npm run upload
+
+      - uses: homoluctus/slatify@v2.0.1
+        if: always()
+        with:
+          type: ${{ job.status }}
+          job_name: "*${{ github.workflow }} ${{ github.repository }}*"
+          url: ${{ env.SLACK_WEBHOOK_URL }}
